@@ -10,11 +10,10 @@ const productsSlice = createSlice({
     },
     reducers:{
         //actions => action handlers
-        productAdded: (products , action) => {
-
-        },
-        productDeleted: (products , action) => {
-
+        deleteUserProduct:(state , action) => {
+            const productId = action.payload.productId
+            state.userProducts = state.userProducts.filter(product => product.getId() !== productId)
+            state.availableProducts = state.availableProducts.filter(product => product.getId() !== productId)
         }
     }
 })
