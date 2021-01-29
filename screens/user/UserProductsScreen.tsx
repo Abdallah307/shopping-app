@@ -1,5 +1,5 @@
 import React from 'react'
-import {View , StyleSheet , Text, FlatList , Button} from 'react-native'
+import {View , StyleSheet , Text, FlatList , Button , Alert } from 'react-native'
 import { useSelector , useDispatch } from 'react-redux'
 import ProductItem from '../../components/shop/ProductItem'
 import AppColors from '../../Colors/AppColors'
@@ -22,6 +22,25 @@ const UserProductsScreen = (props) => {
         })
     }
 
+    const deleteHandler = (itemData) => {
+        Alert.alert(
+            'Are you sure?',
+            'Do you really want to delete this item?',[
+                {text:'No',style:'cancel'},
+                {text:'Delete', style:'destructive',  onPress:()=>{
+                    dispatch(productActions.deleteUserProduct({
+                        productId: itemData.item.getId()
+                    }))
+    
+                    dispatch(cartActions.removeItemFromCart({
+                        productId:itemData.item.getId()
+                    }))
+                }}
+            ]
+            
+        )
+    }
+
     const renderUserProducts = itemData => {
         return <ProductItem  
          title={itemData.item.getTitle()}
@@ -38,15 +57,7 @@ const UserProductsScreen = (props) => {
              />
              <Button
               title="Delete"
-              onPress={()=> {
-                dispatch(productActions.deleteUserProduct({
-                    productId: itemData.item.getId()
-                }))
-
-                dispatch(cartActions.removeItemFromCart({
-                    productId:itemData.item.getId()
-                }))
-              }}
+              onPress={()=> deleteHandler(itemData)}
               color={AppColors.primary}
              />   
         </ProductItem>

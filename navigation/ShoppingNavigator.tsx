@@ -135,7 +135,7 @@ const AdminNavigator = (props) => {
                                 title='Cart'
                                 iconName='md-add-circle'
                                 onPress={()=>{
-                                   {}
+                                   navData.navigation.navigate('Edit Product',{})
                                     
                                 }}
                                 />
@@ -153,7 +153,7 @@ const AdminNavigator = (props) => {
                             <Item
                             title='Save'
                             iconName='md-checkmark'
-                            onPress={()=>{}}
+                            onPress={navData.route.params.submitting}
                             />
                         </HeaderButtons>
                     )

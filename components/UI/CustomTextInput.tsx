@@ -1,12 +1,33 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TextInput } from "react-native";
 
+interface Props {
+    label:string
+    value:any;
+    onChangeText:Function;
+    keyboardType?:string;
+    autoCapitalize?:string;
+    returnKeyType?:string;
+    onEndEditing?:Function;
+    onSubmitEditing?:Function;
+    errorText:string;
 
-const CustomTextInput = props => {
+}
+
+const CustomTextInput = (props:Props) => {
     return(
         <View style={styles.formControlView}>
             <Text style={styles.label}>{props.label}</Text>
-            <TextInput value={props.value} onChangeText={props.onChangeText} style={styles.input}/>
+            <TextInput 
+            value={props.value} 
+            onChangeText={props.onChangeText} 
+            style={styles.input}
+            keyboardType={props.keyboardType}
+            autoCapitalize={props.autoCapitalize}
+            returnKeyType={props.returnKeyType}
+            onEndEditing={props.onEndEditing}
+            onSubmitEditing={props.onSubmitEditing}
+            />
         </View>
     )
 }
