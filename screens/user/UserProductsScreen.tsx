@@ -5,6 +5,9 @@ import ProductItem from '../../components/shop/ProductItem'
 import AppColors from '../../Colors/AppColors'
 import {actions as productActions} from '../../store/slices/productsSlice'
 import {actions as cartActions} from '../../store/slices/cartSlice'
+import { StackNavigationOptions } from '@react-navigation/stack'
+import {HeaderButtons, Item} from 'react-navigation-header-buttons'
+import CustomHeaderButton from '../../components/UI/HeaderButton'
 const UserProductsScreen = (props) => {
 
     const dispatch = useDispatch()
@@ -13,17 +16,24 @@ const UserProductsScreen = (props) => {
         return state.entities.products.userProducts
     })
 
+    const handleSelectItem = (id:string) => {
+        props.navigation.navigate('Edit Product',{
+            id 
+        })
+    }
+
     const renderUserProducts = itemData => {
         return <ProductItem  
          title={itemData.item.getTitle()}
          imageUrl={itemData.item.getImageUrl()}
          price={itemData.item.getPrice()}
-         onSelect={()=>{}}
-         onAddToCart={()=>{}}
-        >
+         onSelect={()=>{handleSelectItem(itemData.item.getId())}}
+         >
              <Button
               title="Edit"
-              onPress={()=>{}}
+              onPress={()=>props.navigation.navigate('Edit Product',{
+                  id:itemData.item.getId()
+              })}
               color={AppColors.primary}
              />
              <Button
@@ -62,5 +72,7 @@ const UserProductsScreen = (props) => {
 const style = StyleSheet.create({
 
 })
+
+
 
 export default UserProductsScreen;

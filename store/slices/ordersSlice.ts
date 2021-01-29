@@ -6,6 +6,7 @@ const slice = createSlice({
     name:'orders',
     initialState:{
         orders:[],
+        numberOfOrders:0
         
     },
     reducers: {
@@ -17,6 +18,7 @@ const slice = createSlice({
                 totalAmount:order.totalAmount,
                 date: moment(new Date()).format('MMMM Do YYYY,hh:mm')
             })
+            state.numberOfOrders++;
 
             
         }

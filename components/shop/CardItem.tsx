@@ -6,7 +6,7 @@ const CartItemCard = (props) => {
     return(
         <View style={styles.cartItemView}>
             <Text style={styles.itemData}>
-                <Text style={styles.quantityText}>{props.quantity}</Text> <Text style={styles.titleText}>{props.title}</Text>
+                <Text style={styles.quantityText}>{props.quantity}</Text> <Text ellipsizeMode='tail' style={styles.titleText}>{props.title}</Text>
             </Text>
 
             <View style={styles.itemData}>
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     itemData:{
         flexDirection:'row',
         alignItems:'center',
+        
     },
     quantityText:{
         fontFamily:'open-sans-regular',
@@ -56,7 +57,9 @@ const styles = StyleSheet.create({
     },
     titleText:{
         fontFamily:'open-sans-regular',
-        fontSize:16
+        fontSize:16,
+        width:"40%",
+        
     }
 })
 
